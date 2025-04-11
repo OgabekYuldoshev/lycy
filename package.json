@@ -7,8 +7,12 @@
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
   "repository": "https://github.com/OgabekYuldoshev/lycy",
+  "bugs": {
+    "url": "https://github.com/OgabekYuldoshev/lycy/issues"
+  },
   "files": [
-    "dist"
+    "dist",
+    "package.json"
   ],
   "engines": {
     "node": ">=10"
