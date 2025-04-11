@@ -18,6 +18,30 @@
     "size": "size-limit",
     "analyze": "size-limit --why"
   },
+  "keywords": [
+    "uzbek",
+    "cyrillic",
+    "latin",
+    "transliteration",
+    "transliterator",
+    "convert",
+    "converter",
+    "translation",
+    "uzbekistan",
+    "i18n",
+    "internationalization",
+    "localization",
+    "alphabet",
+    "kirill",
+    "lotin",
+    "o'zbek",
+    "uzbekcha",
+    "typescript",
+    "javascript",
+    "text-processing",
+    "text-converter",
+    "string-manipulation"
+  ],
   "peerDependencies": {},
   "husky": {
     "hooks": {
@@ -31,7 +55,7 @@
     "trailingComma": "es5"
   },
   "name": "lycy",
-  "author": "OgabekYuldoshev",
+  "author": "OgabekYuldoshev <https://github.com/OgabekYuldoshev>",
   "module": "dist/lycy.esm.js",
   "size-limit": [
     {

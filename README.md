@@ -1,103 +1,119 @@
-# TSDX User Guide
+# UzLatin ↔ UzCyrillic Transliterator
 
-Congrats! You just saved yourself hours of work by bootstrapping this project with TSDX. Let’s get you oriented with what’s here and how to use it.
+### Loyiha haqida
+Bu loyiha o'zbek so'zlari va matnlarini lotin alifbosidan kirill alifbosiga va kirill alifbosidan lotin alifbosiga o'girish uchun mo'ljallangan. Dastur murakkab o'zbek so'zlarini, chet tilidan o'zlashgan so'zlarni va maxsus qoidalarni hisobga olgan holda aniq transliteratsiya qiladi.
 
-> This TSDX setup is meant for developing libraries (not apps!) that can be published to NPM. If you’re looking to build a Node app, you could use `ts-node-dev`, plain `ts-node`, or simple `tsc`.
+### Xususiyatlari
+- Lotin alifbosidan kirill alifbosiga o'girish (`latinToCyrillic` funksiyasi)
+- Kirill alifbosidan lotin alifbosiga o'girish (`cyrillicToLatin` funksiyasi)
+- 500 dan ortiq so'zlar uchun maxsus qoidalar
+- O'zlashgan so'zlar, xususan rus tilidan o'zlashgan so'zlarni to'g'ri transliteratsiya qilish
+- Harflar joylashuviga qarab qo'llaniladigan murakkab qoidalarni qo'llab-quvvatlash
+- Maxsus belgilar, qo'shtirnoqlar va tinish belgilarini to'g'ri o'girish
 
-> If you’re new to TypeScript, checkout [this handy cheatsheet](https://devhints.io/typescript)
-
-## Commands
-
-TSDX scaffolds your new library inside `/src`.
-
-To run TSDX, use:
-
+### O'rnatish
 ```bash
-npm start # or yarn start
+# npm orqali o'rnatish
+npm install lycy
+
+# yarn orqali o'rnatish
+yarn add lycy
+
+# pnpm orqali o'rnatish
+pnpm add lycy
 ```
 
-This builds to `/dist` and runs the project in watch mode so any edits you save inside `src` causes a rebuild to `/dist`.
+### Foydalanish
+```typescript
+import { latinToCyrillic, cyrillicToLatin } from 'lycy';
 
-To do a one-off build, use `npm run build` or `yarn build`.
+// Lotin alifbosidan kirill alifbosiga
+const cyrillicText = latinToCyrillic("O'zbekiston Respublikasi");
+console.log(cyrillicText); // Ўзбекистон Республикаси
 
-To run tests, use `npm test` or `yarn test`.
-
-## Configuration
-
-Code quality is set up for you with `prettier`, `husky`, and `lint-staged`. Adjust the respective fields in `package.json` accordingly.
-
-### Jest
-
-Jest tests are set up to run with `npm test` or `yarn test`.
-
-### Bundle Analysis
-
-[`size-limit`](https://github.com/ai/size-limit) is set up to calculate the real cost of your library with `npm run size` and visualize the bundle with `npm run analyze`.
-
-#### Setup Files
-
-This is the folder structure we set up for you:
-
-```txt
-/src
-  index.tsx       # EDIT THIS
-/test
-  blah.test.tsx   # EDIT THIS
-.gitignore
-package.json
-README.md         # EDIT THIS
-tsconfig.json
+// Kirill alifbosidan lotin alifbosiga
+const latinText = cyrillicToLatin("Ўзбекистон Республикаси");
+console.log(latinText); // O'zbekiston Respublikasi
 ```
 
-### Rollup
+### Maxsus so'zlar va qoidalar
+Dastur 500 dan ortiq so'zlar uchun maxsus qoidalarni qo'llaydi. Bu so'zlar ko'pincha chet tilidan o'zlashgan bo'lib, ular standart transliteratsiya qoidalariga bo'ysunmaydi. Masalan:
 
-TSDX uses [Rollup](https://rollupjs.org) as a bundler and generates multiple rollup configs for various module formats and build settings. See [Optimizations](#optimizations) for details.
+- "funksiya" -> "функция" (oddiy "funksya" emas)
+- "biolyuminessensiya" -> "биолюминесценция"
+- "pensiya" -> "пенсия"
 
-### TypeScript
+Bunday so'zlar uchun `exactWordMap`, `specialWordMap` va `patternWordMap` lug'atlari yaratilgan.
 
-`tsconfig.json` is set up to interpret `dom` and `esnext` types, as well as `react` for `jsx`. Adjust according to your needs.
+### Qo'shimcha funktsiyalar
+Dastur quyidagi holatlarni ham qo'llab-quvvatlaydi:
 
-## Continuous Integration
+- Qo'shtirnoqlar bilan ishlash ("" -> «»)
+- Maxsus harflar: g', o' va boshqalar
+- So'z ohiridagi yumshoq belgini to'g'ri ishlatish
 
-### GitHub Actions
+---
+### About the Project
+This project provides tools for transliterating Uzbek words and texts from Latin to Cyrillic alphabet and vice versa. The algorithm handles complex Uzbek words, loanwords, and special rules to ensure accurate transliteration.
 
-Two actions are added by default:
+### Features
+- Latin to Cyrillic conversion (`latinToCyrillic` function)
+- Cyrillic to Latin conversion (`cyrillicToLatin` function)
+- Special rules for over 500 words
+- Proper transliteration of loanwords, especially those borrowed from Russian
+- Support for complex rules based on letter positioning
+- Correct handling of special characters, quotation marks, and punctuation
 
-- `main` which installs deps w/ cache, lints, tests, and builds on all pushes against a Node and OS matrix
-- `size` which comments cost comparison of your library on every pull request using [`size-limit`](https://github.com/ai/size-limit)
+### Installation
+```bash
+# Install with npm
+npm install lycy
 
-## Optimizations
+# Install with yarn
+yarn add lycy
 
-Please see the main `tsdx` [optimizations docs](https://github.com/palmerhq/tsdx#optimizations). In particular, know that you can take advantage of development-only optimizations:
-
-```js
-// ./types/index.d.ts
-declare var __DEV__: boolean;
-
-// inside your code...
-if (__DEV__) {
-  console.log('foo');
-}
+# Install with pnpm
+pnpm add lycy
 ```
 
-You can also choose to install and use [invariant](https://github.com/palmerhq/tsdx#invariant) and [warning](https://github.com/palmerhq/tsdx#warning) functions.
+### Usage
+```typescript
+import { latinToCyrillic, cyrillicToLatin } from 'lycy';
 
-## Module Formats
+// Latin to Cyrillic
+const cyrillicText = latinToCyrillic("O'zbekiston Respublikasi");
+console.log(cyrillicText); // Ўзбекистон Республикаси
 
-CJS, ESModules, and UMD module formats are supported.
+// Cyrillic to Latin
+const latinText = cyrillicToLatin("Ўзбекистон Республикаси");
+console.log(latinText); // O'zbekiston Respublikasi
+```
 
-The appropriate paths are configured in `package.json` and `dist/index.js` accordingly. Please report if any issues are found.
+### Special Words and Rules
+The library implements special rules for more than 500 words. These words are often loanwords that don't follow standard transliteration rules. For example:
 
-## Named Exports
+- "funksiya" -> "функция" (not simply "funksya")
+- "biolyuminessensiya" -> "биолюминесценция"
+- "pensiya" -> "пенсия"
 
-Per Palmer Group guidelines, [always use named exports.](https://github.com/palmerhq/typescript#exports) Code split inside your React app instead of your React library.
+Dictionaries like `exactWordMap`, `specialWordMap`, and `patternWordMap` are used to handle these special cases.
 
-## Including Styles
+### Additional Functionality
+The library also supports:
 
-There are many ways to ship styles, including with CSS-in-JS. TSDX has no opinion on this, configure how you like.
+- Handling quotation marks ("" -> «»)
+- Special characters: g', o', and others
+- Proper handling of soft sign at the end of words
 
-For vanilla CSS, you can include it at the root directory and add it to the `files` section in your `package.json`, so that it can be imported separately by your users and run through their bundler's loader.
+## Technical Details
 
-## Publishing to NPM
+The implementation uses pattern matching and dictionary-based replacement to ensure accurate transliteration. The code is structured around several key data structures:
 
-We recommend using [np](https://github.com/sindresorhus/np).
+1. `exactWordMap`: Maps exact words that need special transliteration
+2. `specialWordMap`: Handles special cases like "sirka" -> "сирка"
+3. `patternWordMap`: Manages pattern-based replacements like "tsiya" -> "ция"
+4. Character arrays: Map individual Latin and Cyrillic characters
+
+## Contributing
+
+Contributions are welcome to improve the transliteration rules, add more special cases, or optimize the code.
