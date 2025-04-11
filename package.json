@@ -1,8 +1,12 @@
 {
   "version": "0.1.0",
   "license": "MIT",
+  "name": "lycy",
+  "description": "Uzbek to Cyrillic transliterator",
+  "author": "OgabekYuldoshev <https://github.com/OgabekYuldoshev>",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
+  "repository": "https://github.com/OgabekYuldoshev/lycy",
   "files": [
     "dist"
   ],
@@ -54,8 +58,6 @@
     "singleQuote": true,
     "trailingComma": "es5"
   },
-  "name": "lycy",
-  "author": "OgabekYuldoshev <https://github.com/OgabekYuldoshev>",
   "module": "dist/lycy.esm.js",
   "size-limit": [
     {
